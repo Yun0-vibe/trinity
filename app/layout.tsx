@@ -5,7 +5,6 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import SmoothScroll from "@/components/SmoothScroll";
 import MusicPlayer from "@/components/MusicPlayer";
 import Particles from "@/components/Particles";
-import CustomCursor from "@/components/CustomCursor";
 
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair", display: "swap" });
 const bebas = Bebas_Neue({ subsets: ["latin"], weight: "400", variable: "--font-bebas", display: "swap" });
@@ -31,7 +30,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider>
           <SmoothScroll />
           <Particles />
-          <CustomCursor />
           <main className="relative z-10">{children}</main>
           <MusicPlayer />
         </ThemeProvider>

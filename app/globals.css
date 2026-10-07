@@ -148,14 +148,6 @@ body {
   }
 }
 
-/* --------------------------- custom cursor ----------------------------- */
-/* Native pointer is fully replaced by CustomCursor on precise pointers. */
-@media (pointer: fine) {
-  * {
-    cursor: none !important;
-  }
-}
-
 /* --------------------------- reduced motion ---------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
