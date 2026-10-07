@@ -104,7 +104,7 @@ export default function MusicPlayer() {
         onClick={toggle}
         disabled={error}
         aria-label={playing ? "Pause music" : "Play music"}
-        className="flex h-9 w-9 items-center justify-center rounded-full text-black transition-transform hover:scale-110 disabled:opacity-40"
+        className="flex h-11 w-11 items-center justify-center rounded-full text-black transition-transform hover:scale-110 disabled:opacity-40"
         style={{ background: `linear-gradient(135deg, ${theme.colors.primary}, ${theme.colors.accent})` }}
       >
         {playing ? <PauseIcon className="h-4 w-4" /> : <PlayIcon className="ml-0.5 h-4 w-4" />}
@@ -112,7 +112,7 @@ export default function MusicPlayer() {
       <button
         onClick={toggleMute}
         aria-label={muted ? "Unmute" : "Mute"}
-        className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 transition-colors hover:bg-white/10"
+        className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 transition-colors hover:bg-white/10"
       >
         {muted ? <MuteIcon className="h-4 w-4" /> : <VolumeIcon className="h-4 w-4" />}
       </button>

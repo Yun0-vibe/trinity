@@ -75,7 +75,7 @@ export default function Hero({ player }: Props) {
                   initial={{ y: "110%" }}
                   animate={{ y: 0 }}
                   transition={{ duration: 0.8, delay: 0.25 + i * 0.12, ease: [0.22, 1, 0.36, 1] }}
-                  className="block text-[17vw] md:text-[7.5rem] lg:text-[8.5rem]"
+                  className="block text-[15vw] md:text-[7.5rem] lg:text-[8.5rem]"
                   style={{ color: theme.colors.primary, textShadow: `0 0 60px ${theme.colors.glow}` }}
                 >
                   {w}
