@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Player } from "@/data/players";
 import { THEMES } from "@/data/players";
+import { PlayIcon } from "./icons";
 
 interface Props {
   player: Player;
@@ -72,12 +73,12 @@ export default function Preloader({ player, onComplete }: Props) {
 
       <button
         onClick={play}
-        className={`group relative overflow-hidden rounded-full px-12 py-4 text-sm font-black uppercase tracking-[0.35em] transition-transform duration-300 hover:scale-105 active:scale-95 ${
+        className={`group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full px-12 py-4 text-sm font-black uppercase tracking-[0.35em] transition-transform duration-300 hover:scale-105 active:scale-95 ${
           count > 0 ? "cursor-wait opacity-40" : "animate-pulse-glow cursor-pointer"
         }`}
         style={{ background: `linear-gradient(120deg, ${theme.colors.primary}, ${theme.colors.accent})`, color: "#000" }}
       >
-        ▶ &nbsp;Play the film
+        <PlayIcon className="h-4 w-4" /> Play the film
       </button>
       <p className="mt-6 max-w-xs text-center text-[11px] leading-relaxed text-white/40">
         Headphones on. {theme.music.title}

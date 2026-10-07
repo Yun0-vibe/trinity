@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { PLAYER_ORDER, PLAYERS } from "@/data/players";
 import { useTheme } from "./ThemeProvider";
+import { TrinityMark } from "./icons";
 
 /** Fixed nav. The site name itself changes with the active theme. */
 export default function Nav() {
@@ -20,10 +21,10 @@ export default function Nav() {
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-8">
         <Link href="/" className="group flex items-center gap-3">
           <span
-            className="flex h-9 w-9 items-center justify-center rounded-full text-sm font-black text-black transition-transform duration-300 group-hover:rotate-[20deg]"
+            className="flex h-9 w-9 items-center justify-center rounded-full text-black transition-transform duration-300 group-hover:rotate-[20deg]"
             style={{ background: `linear-gradient(135deg, ${theme.colors.primary}, ${theme.colors.accent})` }}
           >
-            ✦
+            <TrinityMark className="h-5 w-5" />
           </span>
           <span className="leading-tight">
             <span className="block font-display text-sm tracking-wider md:text-base" style={{ color: theme.colors.primary }}>

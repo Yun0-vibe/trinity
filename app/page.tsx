@@ -8,6 +8,7 @@ import { PLAYER_ORDER, PLAYERS } from "@/data/players";
 import type { PlayerId } from "@/data/players";
 import { useTheme } from "@/components/ThemeProvider";
 import { THEMES } from "@/data/players";
+import { ArrowRightIcon, SparkIcon } from "@/components/icons";
 import Marquee from "@/components/Marquee";
 import Faceoff from "@/components/Faceoff";
 import Footer from "@/components/Footer";
@@ -76,27 +77,27 @@ export default function LandingPage() {
           transition={{ duration: 0.7, delay: 0.6 }}
           className="mt-6 rounded-full border border-white/25 bg-black/50 px-8 py-3 backdrop-blur-md"
         >
-          <p className="text-center text-sm font-black uppercase tracking-[0.45em] text-white md:text-base">
-            ✦ Choose your legend ✦
+          <p className="flex items-center justify-center gap-3 text-center text-sm font-black uppercase tracking-[0.45em] text-white md:text-base">
+            <SparkIcon className="h-4 w-4 shrink-0 text-accent" /> Choose your legend <SparkIcon className="h-4 w-4 shrink-0 text-accent" />
           </p>
         </motion.div>
 
         {/* the three portals */}
-        <div className="mt-12 grid w-full max-w-7xl gap-5 md:grid-cols-3">
+        <div className="mt-12 grid w-full max-w-7xl items-stretch gap-5 md:grid-cols-3">
           {PLAYER_ORDER.map((id, i) => {
             const p = PLAYERS[id];
             const c = CARD_ACCENT[id];
             return (
               <motion.div
                 key={id}
-                initial={{ opacity: 0, y: 60 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.75 + i * 0.15, ease: [0.22, 1, 0.36, 1] }}
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.55, delay: 0.7 + i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                className="h-full"
               >
                 <Link
                   href={`/${id}`}
-                  className="group relative block h-[52vh] overflow-hidden rounded-3xl border border-white/15 md:h-[58vh]"
-                  style={{ boxShadow: `0 0 0 rgba(0,0,0,0)` }}
+                  className="group relative block h-full min-h-[52vh] overflow-hidden rounded-3xl border border-white/15 md:min-h-[58vh]"
                 >
                   <Image
                     src={p.image}
@@ -129,7 +130,7 @@ export default function LandingPage() {
                       className="mt-4 inline-flex translate-y-2 items-center gap-2 rounded-full px-6 py-2.5 text-xs font-black uppercase tracking-[0.3em] text-black opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100"
                       style={{ background: `linear-gradient(120deg, ${c.to}, #FFD700)` }}
                     >
-                      Enter the story →
+                      Enter the story <ArrowRightIcon className="h-3.5 w-3.5" />
                     </span>
                   </div>
                 </Link>

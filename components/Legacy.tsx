@@ -6,6 +6,7 @@ import type { Player } from "@/data/players";
 import { PLAYER_ORDER, PLAYERS } from "@/data/players";
 import SectionHeading from "./SectionHeading";
 import AnimatedCounter from "./AnimatedCounter";
+import { ArrowRightIcon, TrophyIcon } from "./icons";
 
 /** Trophies, impact, what-if — plus portals to the other two legends. */
 export default function Legacy({ player }: { player: Player }) {
@@ -27,7 +28,7 @@ export default function Legacy({ player }: { player: Player }) {
               transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
               className="flex items-center gap-4 rounded-2xl border border-white/12 bg-white/[0.04] p-5"
             >
-              <span className="text-4xl" aria-hidden>🏆</span>
+              <span className="shrink-0" aria-hidden><TrophyIcon className="h-10 w-10 text-accent" /></span>
               <span>
                 <span className="block font-display text-3xl text-accent">
                   ×<AnimatedCounter value={t.count} />
@@ -69,9 +70,9 @@ export default function Legacy({ player }: { player: Player }) {
               <Link
                 key={id}
                 href={`/${id}`}
-                className="rounded-full border border-white/20 px-8 py-3.5 text-sm font-black uppercase tracking-[0.25em] text-white/85 transition-all hover:-translate-y-1 hover:border-white/60 hover:shadow-[0_16px_50px_-12px_var(--c-glow)]"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-8 py-3.5 text-sm font-black uppercase tracking-[0.25em] text-white/85 transition-all hover:-translate-y-1 hover:border-white/60 hover:shadow-[0_16px_50px_-12px_var(--c-glow)]"
               >
-                {PLAYERS[id].nickname} →
+                {PLAYERS[id].nickname} <ArrowRightIcon className="h-4 w-4" />
               </Link>
             ))}
           </div>

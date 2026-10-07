@@ -48,7 +48,9 @@ export interface TimelineEvent {
 export interface Moment {
   title: string;
   text: string;
-  /** Always-safe YouTube search URL so links never 404. */
+  /** Real, verified YouTube video ID — plays inline in the card. */
+  youtubeId: string;
+  /** Direct watch URL (fallback / "Watch on YouTube" link). */
   youtube: string;
 }
 
@@ -174,8 +176,6 @@ export const THEMES: Record<ThemeId, ThemeConfig> = {
 
 /* ------------------------------- PLAYERS ------------------------------ */
 
-const yt = (q: string) => `https://www.youtube.com/results?search_query=${encodeURIComponent(q)}`;
-
 export const PLAYERS: Record<PlayerId, Player> = {
   messi: {
     id: "messi",
@@ -244,10 +244,10 @@ export const PLAYERS: Record<PlayerId, Player> = {
       act: "IV. Miami Sunset",
       intro: "Nights that bent physics — and the evenings that completed him.",
       items: [
-        { title: "The Getafe Slalom (2007)", text: "Sixty metres, seven defenders, one small genius. Twenty years old and already painting.", youtube: yt("messi getafe solo goal 2007 full") },
-        { title: "Five vs Leverkusen (2012)", text: "First player ever to score five in a Champions League game. The record books needed a new page overnight.", youtube: yt("messi 5 goals leverkusen 2012") },
-        { title: "Bernabéu 93' (2017)", text: "El Clásico, 2–2, dying seconds — Messi strokes home the winner and holds his shirt to 80,000 silenced Madridistas.", youtube: yt("messi bernabeu winner 2017 last minute celebration") },
-        { title: "The 2022 Final (2 goals vs France)", text: "Two goals, a shootout, and the trophy lift in Doha. The single greatest individual World Cup ever.", youtube: yt("messi world cup final 2022 highlights goals") },
+        { title: "The Getafe Slalom (2007)", text: "Sixty metres, seven defenders, one small genius. Twenty years old and already painting.", youtubeId: "NtyIkfl_t-4", youtube: "https://www.youtube.com/watch?v=NtyIkfl_t-4" },
+        { title: "Five vs Leverkusen (2012)", text: "First player ever to score five in a Champions League game. The record books needed a new page overnight.", youtubeId: "YAy0tg558wE", youtube: "https://www.youtube.com/watch?v=YAy0tg558wE" },
+        { title: "Bernabéu 93' (2017)", text: "El Clásico, 2–2, dying seconds — Messi strokes home the winner and holds his shirt to 80,000 silenced Madridistas.", youtubeId: "ksFgJFGQ5_I", youtube: "https://www.youtube.com/watch?v=ksFgJFGQ5_I" },
+        { title: "The 2022 Final (2 goals vs France)", text: "Two goals, a shootout, and the trophy lift in Doha. The single greatest individual World Cup ever.", youtubeId: "zhEWqfP6V_w", youtube: "https://www.youtube.com/watch?v=zhEWqfP6V_w" },
       ],
     },
     records: [
@@ -354,10 +354,10 @@ export const PLAYERS: Record<PlayerId, Player> = {
       act: "IV. Juve & Return",
       intro: "Goals that froze stadiums — and one that made an entire enemy crowd applaud.",
       items: [
-        { title: "The Bicycle vs Juve (2018)", text: "Two metres in the air, perfectly horizontal, top corner. Buffon just watched. Turin stood and clapped.", youtube: yt("ronaldo bicycle kick juventus 2018 full") },
-        { title: "Hat-trick vs Spain (2018)", text: "World Cup opener, 88th minute, 25-yard free-kick, top bins. One of the great single-game carries.", youtube: yt("ronaldo hat trick spain world cup 2018 free kick") },
-        { title: "Hat-trick vs Atlético (2019)", text: "Juventus down 2–0, season on the line — Ronaldo scores all three. Header, header, penalty. Ice.", youtube: yt("ronaldo hat trick atletico madrid 2019 juventus comeback") },
-        { title: "SIUUU vs ...everyone", text: "66 career hat-tricks, 140 UCL goals, 146 for Portugal. The celebration heard on every continent.", youtube: yt("cristiano ronaldo best goals real madrid compilation") },
+        { title: "The Bicycle vs Juve (2018)", text: "Two metres in the air, perfectly horizontal, top corner. Buffon just watched. Turin stood and clapped.", youtubeId: "Nt8198a0acA", youtube: "https://www.youtube.com/watch?v=Nt8198a0acA" },
+        { title: "Hat-trick vs Spain (2018)", text: "World Cup opener, 88th minute, 25-yard free-kick, top bins. One of the great single-game carries.", youtubeId: "1NzNzpWdAz8", youtube: "https://www.youtube.com/watch?v=1NzNzpWdAz8" },
+        { title: "Hat-trick vs Atlético (2019)", text: "Juventus down 2–0, season on the line — Ronaldo scores all three. Header, header, penalty. Ice.", youtubeId: "cLfSpFg6Pxg", youtube: "https://www.youtube.com/watch?v=cLfSpFg6Pxg" },
+        { title: "All 451 Madrid Goals", text: "Nine seasons, 451 goals for Real Madrid — every single one. Press play and clear your schedule.", youtubeId: "aeapZzsujqc", youtube: "https://www.youtube.com/watch?v=aeapZzsujqc" },
       ],
     },
     records: [
@@ -464,10 +464,10 @@ export const PLAYERS: Record<PlayerId, Player> = {
       act: "IV. The Comeback",
       intro: "Flicks that broke physics, nights that broke hearts — and the return that healed them.",
       items: [
-        { title: "Puskás vs Flamengo (2011)", text: "A slalom through half of Flamengo capped with the coolest of finishes. FIFA's Goal of the Year.", youtube: yt("neymar puskas flamengo 2011 goal") },
-        { title: "The Remontada (2017)", text: "6–1 vs PSG: two goals and the assist for Sergi Roberto's winner. Neymar's personal masterpiece of chaos.", youtube: yt("neymar remontada psg 6-1 highlights 2017") },
-        { title: "Passing Pelé (2023)", text: "Goals 78 and 79 vs Bolivia. The King applauds from history; the Prince takes Brazil's scoring crown.", youtube: yt("neymar passes pele brazil record goals bolivia") },
-        { title: "Olympic Gold Pen (2016)", text: "Maracanã, shootout, sudden death — Neymar steps up and buries it. Gold for Brazil, at last.", youtube: yt("neymar winning penalty olympics 2016 final germany") },
+        { title: "Puskás vs Flamengo (2011)", text: "A slalom through half of Flamengo capped with the coolest of finishes. FIFA's Goal of the Year.", youtubeId: "Pk7WLK6J-Z8", youtube: "https://www.youtube.com/watch?v=Pk7WLK6J-Z8" },
+        { title: "The Remontada (2017)", text: "6–1 vs PSG: two goals and the assist for Sergi Roberto's winner. Neymar's personal masterpiece of chaos.", youtubeId: "h4m68r8kWAc", youtube: "https://www.youtube.com/watch?v=h4m68r8kWAc" },
+        { title: "Passing Pelé (2023)", text: "Goals 78 and 79 vs Bolivia. The King applauds from history; the Prince takes Brazil's scoring crown.", youtubeId: "jB6S0qsDAKI", youtube: "https://www.youtube.com/watch?v=jB6S0qsDAKI" },
+        { title: "Olympic Gold Pen (2016)", text: "Maracanã, shootout, sudden death — Neymar steps up and buries it. Gold for Brazil, at last.", youtubeId: "-Jmjn_dJt_4", youtube: "https://www.youtube.com/watch?v=-Jmjn_dJt_4" },
       ],
     },
     records: [

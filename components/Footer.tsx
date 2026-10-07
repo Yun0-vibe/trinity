@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useTheme } from "./ThemeProvider";
+import { ArrowLeftIcon } from "./icons";
 
 /** Credits, CC BY-SA image attribution, disclaimer, back-to-landing link. */
 export default function Footer() {
@@ -17,9 +18,9 @@ export default function Footer() {
             <p className="mt-2 text-sm text-white/55">{theme.tagline}</p>
             <Link
               href="/"
-              className="mt-5 inline-block rounded-full border border-white/25 px-6 py-2.5 text-xs font-black uppercase tracking-[0.3em] transition-all hover:-translate-y-0.5 hover:border-white/60"
+              className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-2.5 text-xs font-black uppercase tracking-[0.3em] transition-all hover:-translate-y-0.5 hover:border-white/60"
             >
-              ← Back to the Trinity
+              <ArrowLeftIcon className="h-3.5 w-3.5" /> Back to the Trinity
             </Link>
           </div>
           <div className="text-sm leading-relaxed text-white/55">

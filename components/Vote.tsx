@@ -8,6 +8,7 @@ import { PLAYER_ORDER, PLAYERS, VOTE_SEED, VOTE_STORAGE_KEY } from "@/data/playe
 import type { Player, PlayerId } from "@/data/players";
 import { useTheme } from "./ThemeProvider";
 import SectionHeading from "./SectionHeading";
+import { CheckIcon } from "./icons";
 
 const fmt = (n: number) => n.toLocaleString("en-US");
 
@@ -81,8 +82,8 @@ export default function Vote({ player }: { player: Player }) {
               } bg-white/[0.04] backdrop-blur-md`}
             >
               {mine && (
-                <span className="absolute right-4 top-4 rounded-full bg-accent px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-black">
-                  Your vote ✓
+                <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-accent px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-black">
+                  Your vote <CheckIcon className="h-3 w-3" />
                 </span>
               )}
               <div className="flex items-center gap-4">

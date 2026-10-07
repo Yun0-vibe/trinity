@@ -1,6 +1,7 @@
 "use client";
 
 import { useTheme } from "./ThemeProvider";
+import { SparkIcon } from "./icons";
 
 interface Props {
   items: string[];
@@ -19,8 +20,8 @@ export default function Marquee({ items, reverse = false }: Props) {
             {row.map((item, i) => (
               <span key={`${half}-${i}`} className="flex items-center whitespace-nowrap">
                 <span className="px-6 font-display text-xl tracking-wider text-white/85 md:text-3xl">{item}</span>
-                <span className="text-lg" style={{ color: theme.colors.accent }}>
-                  ✦
+                <span style={{ color: theme.colors.accent }} aria-hidden>
+                  <SparkIcon className="h-4 w-4" />
                 </span>
               </span>
             ))}

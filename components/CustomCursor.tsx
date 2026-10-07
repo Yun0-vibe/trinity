@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useTheme } from "./ThemeProvider";
 
-/** Themed trailing cursor ring. Native cursor stays visible; hidden on touch/reduced motion. */
+/**
+ * Cinematic cursor: instant accent dot + trailing difference-blend ring.
+ * Inverts over any theme so it always reads as premium, never noise.
+ * Native cursor stays visible; hidden on touch / reduced motion.
+ */
 export default function CustomCursor() {
-  const { theme } = useTheme();
   const ringRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
   const [enabled, setEnabled] = useState(false);
@@ -30,13 +32,16 @@ export default function CustomCursor() {
       setHovering(!!t?.closest("a, button, [data-cursor]"));
     };
     const loop = () => {
-      rx += (mx - rx) * 0.16;
-      ry += (my - ry) * 0.16;
-      if (ringRef.current) ringRef.current.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%) scale(${hovering ? 1.8 : 1})`;
-      if (dotRef.current) dotRef.current.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
+      rx += (mx - rx) * 0.22;
+      ry += (my - ry) * 0.22;
+      if (ringRef.current) {
+        ringRef.current.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%) scale(${hovering ? 1.9 : 1})`;
+        ringRef.current.style.opacity = hovering ? "1" : "0.75";
+      }
+      if (dotRef.current) dotRef.current.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%) scale(${hovering ? 0.5 : 1})`;
       raf = requestAnimationFrame(loop);
     };
-    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mousemove", onMove, { passive: true });
     raf = requestAnimationFrame(loop);
     return () => {
       window.removeEventListener("mousemove", onMove);
@@ -51,15 +56,10 @@ export default function CustomCursor() {
       <div
         ref={ringRef}
         aria-hidden
-        className="pointer-events-none fixed left-0 top-0 z-[80] h-9 w-9 rounded-full transition-[scale] duration-200"
-        style={{ border: `2px solid ${theme.colors.accent}`, boxShadow: `0 0 18px ${theme.colors.glow}` }}
+        className="pointer-events-none fixed left-0 top-0 z-[80] h-8 w-8 rounded-full mix-blend-difference"
+        style={{ border: "1.5px solid #fff", transition: "opacity 0.25s ease" }}
       />
-      <div
-        ref={dotRef}
-        aria-hidden
-        className="pointer-events-none fixed left-0 top-0 z-[80] h-1.5 w-1.5 rounded-full"
-        style={{ background: theme.colors.accent }}
-      />
+      <div ref={dotRef} aria-hidden className="pointer-events-none fixed left-0 top-0 z-[80] h-1.5 w-1.5 rounded-full bg-white mix-blend-difference" />
     </>
   );
 }

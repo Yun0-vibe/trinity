@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import type { Player } from "@/data/players";
 import SectionHeading from "./SectionHeading";
 import TiltCard from "./TiltCard";
+import { BoltIcon, TrophyIcon } from "./icons";
 
 const fmt = (n: number) => n.toLocaleString("en-US");
 
@@ -45,7 +46,9 @@ export default function Journey({ player }: { player: Player }) {
                   <td className="px-4 py-4 text-right font-black tabular-nums text-accent md:px-6">{fmt(c.goals)}</td>
                   <td className="px-4 py-4 text-right tabular-nums md:px-6">{fmt(c.assists)}</td>
                   <td className="px-4 py-4 text-right font-bold tabular-nums md:px-6">{fmt(c.goals + c.assists)}</td>
-                  <td className="px-4 py-4 text-right tabular-nums md:px-6">🏆 {c.trophies}</td>
+                  <td className="px-4 py-4 text-right tabular-nums md:px-6">
+                    <span className="inline-flex items-center justify-end gap-1.5"><TrophyIcon className="h-4 w-4 text-accent" />{c.trophies}</span>
+                  </td>
                 </tr>
               ))}
               <tr className="border-t-2 border-accent/40 bg-white/[0.05] font-bold">
@@ -55,7 +58,9 @@ export default function Journey({ player }: { player: Player }) {
                 <td className="px-4 py-4 text-right tabular-nums text-accent md:px-6">{fmt(totals.goals)}</td>
                 <td className="px-4 py-4 text-right tabular-nums md:px-6">{fmt(totals.assists)}</td>
                 <td className="px-4 py-4 text-right tabular-nums md:px-6">{fmt(totals.ga)}</td>
-                <td className="px-4 py-4 text-right tabular-nums md:px-6">🏆 {totals.trophies}</td>
+                <td className="px-4 py-4 text-right tabular-nums md:px-6">
+                  <span className="inline-flex items-center justify-end gap-1.5"><TrophyIcon className="h-4 w-4 text-accent" />{totals.trophies}</span>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -72,7 +77,7 @@ export default function Journey({ player }: { player: Player }) {
               transition={{ duration: 0.55, delay: i * 0.1 }}
             >
               <TiltCard className="h-full rounded-2xl border border-white/12 bg-gradient-to-b from-white/[0.07] to-transparent p-6" maxTilt={7}>
-                <p className="text-[11px] font-black uppercase tracking-[0.3em] text-accent">⚡ Peak</p>
+                <p className="inline-flex items-center gap-1.5 text-[11px] font-black uppercase tracking-[0.3em] text-accent"><BoltIcon className="h-3.5 w-3.5" /> Peak</p>
                 <p className="mt-2 font-display text-xl leading-tight">{p.season}</p>
                 <p className="mt-3 text-sm leading-relaxed text-white/65">{p.text}</p>
               </TiltCard>
