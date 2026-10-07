@@ -1,0 +1,2 @@
+Stadium/hero imagery is served from Unsplash via next/image remote patterns (see next.config.js).
+Place any local images here and reference them as /images/<file>.
