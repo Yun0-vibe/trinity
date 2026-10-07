@@ -289,7 +289,7 @@ export const PLAYERS: Record<PlayerId, Player> = {
     id: "ronaldo",
     name: "RONALDO",
     fullName: "Cristiano Ronaldo dos Santos Aveiro",
-    nickname: "CR7 — The Champion",
+    nickname: "CR7 — The Red Devil",
     heroTitle: "THE CHAMPION",
     heroSubtitle: "Hard work beats talent",
     image: "https://commons.wikimedia.org/wiki/Special:FilePath/Cristiano_Ronaldo_Madrid.jpg?width=900",
