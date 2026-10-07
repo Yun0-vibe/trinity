@@ -36,7 +36,7 @@ export default function LandingPage() {
   return (
     <>
       {/* hero */}
-      <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 pt-24 pb-16">
+      <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 pt-14 pb-16">
         <div
           className="absolute inset-0 -z-10"
           style={{

@@ -16,6 +16,8 @@ export default function SmoothScroll() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Touch devices scroll natively — Lenis only smooths wheel input.
+    if (window.matchMedia("(pointer: coarse)").matches) return;
 
     gsap.registerPlugin(ScrollTrigger);
 
@@ -36,6 +38,7 @@ export default function SmoothScroll() {
   }, []);
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
     window.scrollTo(0, 0);
     const t = setTimeout(() => ScrollTrigger.refresh(), 150);
     return () => clearTimeout(t);

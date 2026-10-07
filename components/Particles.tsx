@@ -52,7 +52,11 @@ export default function Particles() {
 
     const kind: ParticleKind = THEMES[themeId].particles;
     const colors = PALETTES[kind];
-    const count = kind === "embers" ? 70 : 90;
+    // Mobile diet: few particles, zero shadowBlur (the GPU killer on phones).
+    const coarse =
+      window.matchMedia("(pointer: coarse)").matches || Math.min(window.innerWidth, window.innerHeight) < 640;
+    const count = coarse ? 24 : kind === "embers" ? 70 : 90;
+    const glow = !coarse;
     const parts: P[] = [];
 
     const spawn = (initial: boolean): P => ({
@@ -94,8 +98,10 @@ export default function Particles() {
           ctx.fillRect(-p.size / 2, -p.size / 4, p.size, p.size / 2);
         } else {
           ctx.fillStyle = p.color;
-          ctx.shadowBlur = kind === "embers" ? 12 : 8;
-          ctx.shadowColor = p.color;
+          if (glow) {
+            ctx.shadowBlur = kind === "embers" ? 12 : 8;
+            ctx.shadowColor = p.color;
+          }
           ctx.beginPath();
           ctx.arc(0, 0, p.size, 0, Math.PI * 2);
           ctx.fill();

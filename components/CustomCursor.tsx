@@ -1,13 +1,15 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useTheme } from "./ThemeProvider";
 
 /**
- * Cinematic cursor: instant accent dot + trailing difference-blend ring.
- * Inverts over any theme so it always reads as premium, never noise.
- * Native cursor stays visible; hidden on touch / reduced motion.
+ * Cinematic cursor REPLACING the native pointer (see globals.css):
+ * theme-accent dot + trailing difference-blend ring that expands over links.
+ * Rendered on fine pointers only; touch + reduced-motion get nothing.
  */
 export default function CustomCursor() {
+  const { theme } = useTheme();
   const ringRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
   const [enabled, setEnabled] = useState(false);
@@ -59,7 +61,7 @@ export default function CustomCursor() {
         className="pointer-events-none fixed left-0 top-0 z-[80] h-8 w-8 rounded-full mix-blend-difference"
         style={{ border: "1.5px solid #fff", transition: "opacity 0.25s ease" }}
       />
-      <div ref={dotRef} aria-hidden className="pointer-events-none fixed left-0 top-0 z-[80] h-1.5 w-1.5 rounded-full bg-white mix-blend-difference" />
+      <div ref={dotRef} aria-hidden className="pointer-events-none fixed left-0 top-0 z-[80] h-2 w-2 rounded-full" style={{ background: theme.colors.accent, boxShadow: `0 0 14px ${theme.colors.glow}` }} />
     </>
   );
 }

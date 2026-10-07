@@ -22,6 +22,9 @@ yarn-error.log*
 # local env
 .env*.local
 
+# session logs
+*.log
+
 # vercel
 .vercel
 

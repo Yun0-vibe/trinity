@@ -133,6 +133,29 @@ body {
   animation: number-pulse 0.5s ease-in-out infinite;
 }
 
+/* ------------------------- mobile performance -------------------------- */
+/* Grain + backdrop blur cause the scroll jank on phones: static paint only. */
+@media (max-width: 768px) {
+  .grain::after {
+    display: none;
+  }
+  .backdrop-blur-sm,
+  .backdrop-blur-md,
+  .backdrop-blur-lg,
+  .backdrop-blur-xl {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+/* --------------------------- custom cursor ----------------------------- */
+/* Native pointer is fully replaced by CustomCursor on precise pointers. */
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
+
 /* --------------------------- reduced motion ---------------------------- */
 
 @media (prefers-reduced-motion: reduce) {

@@ -23,7 +23,7 @@ export default function Hero({ player }: Props) {
   const words = player.heroTitle.split(" ");
 
   return (
-    <section ref={ref} className="relative flex min-h-screen items-center justify-center overflow-hidden pt-16">
+    <section ref={ref} className="relative flex min-h-screen items-center justify-center overflow-hidden pt-10">
       {/* backdrop */}
       <motion.div style={{ y: bgY }} className="absolute inset-0 -z-10">
         <Image src={player.bgImage} alt="" fill priority className="object-cover opacity-40" sizes="100vw" />

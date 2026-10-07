@@ -6,7 +6,6 @@ import { useTheme } from "./ThemeProvider";
 import SectionHeading from "./SectionHeading";
 import TiltCard from "./TiltCard";
 import VideoEmbed from "./VideoEmbed";
-import { ArrowUpRightIcon } from "./icons";
 
 /** Craziest moments: inline playable videos + direct YouTube links. */
 export default function Moments({ player }: { player: Player }) {
@@ -35,14 +34,6 @@ export default function Moments({ player }: { player: Player }) {
                 <div className="flex flex-1 flex-col p-6">
                   <h3 className="font-display text-xl leading-tight md:text-2xl">{m.title}</h3>
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-white/65">{m.text}</p>
-                  <a
-                    href={m.youtube}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-5 inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-[0.25em] text-accent transition-transform hover:translate-x-1"
-                  >
-                    Watch on YouTube <ArrowUpRightIcon className="h-3.5 w-3.5" />
-                  </a>
                 </div>
               </TiltCard>
             </motion.div>
