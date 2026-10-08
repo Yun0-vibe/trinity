@@ -22,9 +22,16 @@ export default function PlayerPage({ player }: { player: Player }) {
   const { theme } = useTheme();
   const [ready, setReady] = useState(false);
 
+  // After the countdown the film must start from the top (hero) —
+  // SPA navigation otherwise resumes the previous page's scroll depth.
+  const handleReady = () => {
+    setReady(true);
+    window.dispatchEvent(new Event("trinity:scroll-top"));
+  };
+
   return (
     <>
-      <AnimatePresence>{!ready && <Preloader key="preloader" player={player} onComplete={() => setReady(true)} />}</AnimatePresence>
+      <AnimatePresence>{!ready && <Preloader key="preloader" player={player} onComplete={handleReady} />}</AnimatePresence>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: ready ? 1 : 0 }}
