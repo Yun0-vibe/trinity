@@ -36,8 +36,6 @@ export default function Preloader({ player, onComplete }: Props) {
   const play = () => {
     if (exiting) return;
     setExiting(true);
-    // Let the music player know: user gesture happened — safe to autoplay.
-    window.dispatchEvent(new CustomEvent("trinity:music-start"));
     setTimeout(onComplete, 650);
   };
 
@@ -81,7 +79,7 @@ export default function Preloader({ player, onComplete }: Props) {
         <PlayIcon className="h-4 w-4" /> Play the film
       </button>
       <p className="mt-6 max-w-xs text-center text-[11px] leading-relaxed text-white/40">
-        Headphones on. {theme.music.title}
+        Best experienced full-screen, with the sound of the crowd in your head.
       </p>
     </motion.div>
   );

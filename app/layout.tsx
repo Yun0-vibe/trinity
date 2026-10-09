@@ -3,7 +3,6 @@ import { Bebas_Neue, Fredoka, Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import SmoothScroll from "@/components/SmoothScroll";
-import MusicPlayer from "@/components/MusicPlayer";
 import Particles from "@/components/Particles";
 
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair", display: "swap" });
@@ -31,7 +30,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <SmoothScroll />
           <Particles />
           <main className="relative z-10">{children}</main>
-          <MusicPlayer />
         </ThemeProvider>
       </body>
     </html>

@@ -38,11 +38,7 @@ export default function Footer() {
               <a href="https://unsplash.com/" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">
                 Unsplash
               </a>
-              . Ambient lo-fi by{" "}
-              <a href="https://incompetech.com/" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">
-                Kevin MacLeod
-              </a>{" "}
-              (CC-BY 4.0). All photos and music remain © their respective creators.
+              . All photos remain © their respective creators.
             </p>
           </div>
           <div className="text-sm leading-relaxed text-white/55">

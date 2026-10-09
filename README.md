@@ -37,12 +37,10 @@ Every section reads them, so switching legends re-skins the whole site.
 
 All content + per-theme config lives in `data/players.ts`.
 
-## Music
+## Sound
 
-Each page auto-plays its theme track (SoundHelix placeholders). If the browser
-blocks autoplay, a **"Tap to enable music"** pill appears. Drop real tracks in
-`public/audio/` (see `README.txt` there) and point `music.url` at them —
-missing files show a friendly "Add audio" message instead of breaking.
+No background music — removed by design. The stadium roars live inside the
+Craziest Moments videos on each player page.
 
 ## Credits
 
