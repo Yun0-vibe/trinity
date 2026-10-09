@@ -42,7 +42,7 @@ export default function Legacy({ player }: { player: Player }) {
         </motion.div>
 
         {/* cabinet shelves */}
-        <div className="grid gap-4 lg:grid-cols-2">
+        <div className="grid items-start gap-4 lg:grid-cols-2">
           {cabinet.map((group, gi) => {
             const subtotal = group.items.reduce((a, i) => a + i.years.length, 0);
             const isOpen = open === gi;

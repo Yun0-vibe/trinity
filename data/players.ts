@@ -128,7 +128,7 @@ export const THEMES: Record<ThemeId, ThemeConfig> = {
     preloaderNumber: 3,
     marquee: ["THE TRINITY", "CHOOSE YOUR LEGEND", "MESSI · RONALDO · NEYMAR", "THE HOLY TRINITY OF FOOTBALL"],
     music: {
-      title: "Overture — lo-fi ambient (K. MacLeod)",
+      title: "Trinity Theme · Lo-fi Bed",
       url: "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Meditation%20Impromptu%2003.mp3",
       commentary: ["The Trinity... choose your legend.", "Messi... Ronaldo... Neymar."],
     },
@@ -150,7 +150,7 @@ export const THEMES: Record<ThemeId, ThemeConfig> = {
     preloaderNumber: 10,
     marquee: ["LA PULGA", "THE FLEA", "GENIUS DOESN'T SHOUT", "ROSARIO · BARCELONA · MIAMI", "91 GOALS · ONE YEAR"],
     music: {
-      title: "Deliberate Thought — lo-fi piano (K. MacLeod)",
+      title: "La Pulga Theme · Lo-fi Bed",
       url: "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Deliberate%20Thought.mp3",
       commentary: [
         "Encara Messi... encara Messi... encara Messi... GOOOL!",
@@ -176,7 +176,7 @@ export const THEMES: Record<ThemeId, ThemeConfig> = {
     preloaderNumber: 7,
     marquee: ["SIUUU", "CR7", "HARD WORK BEATS TALENT", "THE ROAD TO 1000", "MADEIRA · MADRID · RIYADH"],
     music: {
-      title: "Meditation — calm ambient (K. MacLeod)",
+      title: "SIUUU Theme · Lo-fi Bed",
       url: "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Meditation%20Impromptu%2001.mp3",
       commentary: [
         "Rrrronaldo... GOOOL! Siuuu!",
@@ -202,7 +202,7 @@ export const THEMES: Record<ThemeId, ThemeConfig> = {
     preloaderNumber: 10,
     marquee: ["JOGA BONITO", "THE SAMBA PRINCE", "MENINOS DA VILA", "PLAY TO MAKE PEOPLE HAPPY", "SANTOS · MSN · PARIS"],
     music: {
-      title: "Thinking Music — warm lo-fi (K. MacLeod)",
+      title: "Samba Prince Theme · Lo-fi Bed",
       url: "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Thinking%20Music.mp3",
       commentary: [
         "Neymar... ginga... é gol! Gol do Brasil!",
@@ -228,9 +228,9 @@ export const PLAYERS: Record<PlayerId, Player> = {
       "https://commons.wikimedia.org/wiki/Special:FilePath/Lionel_Messi_NE_Revolution_Inter_Miami_7.9.25-178.jpg?width=900",
     imageAlt: "Lionel Messi playing for Inter Miami (Wikimedia Commons, CC BY-SA)",
     bgImage: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?q=80&w=1920&auto=format&fit=crop",
-    totals: { apps: 1174, goals: 930, assists: 425, trophies: 47 },
+    totals: { apps: 1174, goals: 932, assists: 424, trophies: 47 },
     keyStats: [
-      { label: "Career Goals", value: 930 },
+      { label: "Career Goals", value: 932 },
       { label: "Ballon d'Or", value: 8 },
       { label: "World Cup", value: 2022, suffix: " ★" },
     ],
@@ -311,7 +311,7 @@ export const PLAYERS: Record<PlayerId, Player> = {
     ],
     legacy: {
       act: "V. Legacy",
-      footnote: "Senior tally 46 + U20 World Cup 2005 = 47 per Wikipedia (Oct 2026). Individual awards live in the records section, not here.",
+      footnote: "47 official honours per Wikipedia (Oct 2026): 45 senior + Olympics (U23) + U20 World Cup. Outlets publish anywhere from 44 to 49 depending on friendlies, youth and minor cups — every item here is dated, so count it yourself.",
       cabinet: [
         {
           team: "FC Barcelona",
@@ -454,7 +454,7 @@ export const PLAYERS: Record<PlayerId, Player> = {
     ],
     legacy: {
       act: "V. Legacy",
-      footnote: "35 official team honours per Wikipedia (Oct 2026). The 2016 UEFA Super Cup is not credited — injured after the Euros. Individual awards live in records.",
+      footnote: "35 official team honours per Wikipedia (Oct 2026). The 2016 UEFA Super Cup is not credited — injured after the Euros — nor the 2008 Community Shield (Olympics duty). Outlets range 33–36 on those calls.",
       cabinet: [
         {
           team: "Sporting CP",
@@ -608,7 +608,7 @@ export const PLAYERS: Record<PlayerId, Player> = {
     ],
     legacy: {
       act: "V. Legacy",
-      footnote: "31 honours all-in: senior tally 29 + Olympic gold (U23) + U20 Sudamericano. Missed the 2015 UEFA Super Cup with mumps — not credited.",
+      footnote: "31 honours all-in: 29 senior + Olympic gold (U23) + U20 Sudamericano. Outlets range 27–31 by convention. Missed the 2015 UEFA Super Cup with mumps — not credited.",
       cabinet: [
         {
           team: "Santos",
@@ -673,8 +673,8 @@ export interface CompareRow {
 }
 
 export const COMPARISON: CompareRow[] = [
-  { label: "Career goals", messi: 930, ronaldo: 979, neymar: 459 },
-  { label: "Career assists", messi: 425, ronaldo: 291, neymar: 283 },
+  { label: "Career goals", messi: 932, ronaldo: 979, neymar: 459 },
+  { label: "Career assists", messi: 424, ronaldo: 291, neymar: 283 },
   { label: "Appearances", messi: 1174, ronaldo: 1338, neymar: 773 },
   { label: "Ballon d'Or", messi: 8, ronaldo: 5, neymar: 0 },
   { label: "International goals", messi: 125, ronaldo: 146, neymar: 80 },

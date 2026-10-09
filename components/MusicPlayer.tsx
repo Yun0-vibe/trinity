@@ -28,19 +28,37 @@ export default function MusicPlayer() {
   const tryPlay = useCallback(async () => {
     const a = audioRef.current;
     if (!a) return;
+    const wasPaused = a.paused;
     try {
+      // Audible playback (needs a user gesture — browsers block it otherwise).
       a.muted = false;
-      // Smooth fade-in from silence to the (low) target volume.
-      a.volume = 0;
-      await a.play();
+      if (wasPaused) {
+        // Smooth fade-in from silence to the (low) target volume.
+        a.volume = 0;
+        await a.play();
+        const target = volumeRef.current;
+        const ramp = window.setInterval(() => {
+          a.volume = Math.min(target, a.volume + 0.015);
+          if (a.volume >= target) window.clearInterval(ramp);
+        }, 100);
+      } else {
+        // Already playing (muted fallback) — just unmute at target volume.
+        a.volume = volumeRef.current;
+      }
       setPlaying(true);
-      const target = volumeRef.current;
-      const ramp = window.setInterval(() => {
-        a.volume = Math.min(target, a.volume + 0.015);
-        if (a.volume >= target) window.clearInterval(ramp);
-      }, 100);
+      setMuted(false);
     } catch {
-      setPlaying(false); // still blocked — a later gesture will start it
+      // No gesture yet: fall back to SILENT playback (always allowed), so the
+      // track is loaded and rolling — the next tap unmutes it instantly.
+      try {
+        a.muted = true;
+        a.volume = volumeRef.current;
+        await a.play();
+        setPlaying(true);
+        setMuted(true);
+      } catch {
+        setPlaying(false);
+      }
     }
   }, []);
 
@@ -141,7 +159,7 @@ export default function MusicPlayer() {
           <span className="truncate">{error ? "Audio missing" : theme.music.title}</span>
         </p>
         <p className="truncate text-[10px] text-white/50">
-          {error ? "Add files to public/audio/ — see data/players.ts" : playing ? "Lo-fi bed · loop" : "Click anywhere for sound"}
+          {error ? "Add files to public/audio/ — see data/players.ts" : !playing ? "Click anywhere for sound" : muted ? "Tap anywhere for sound" : "Lo-fi bed · loop"}
         </p>
       </div>
       <button
@@ -171,7 +189,15 @@ export default function MusicPlayer() {
       />
       {ttsSupported && (
         <button
-          onClick={() => setCommentary((c) => !c)}
+          onClick={() => {
+            // Enabling commentary is an explicit request for sound:
+            // start the music too (this click is a valid gesture).
+            if (!commentary) {
+              manualRef.current = true;
+              void tryPlay();
+            }
+            setCommentary((c) => !c);
+          }}
           aria-pressed={commentary}
           aria-label={commentary ? "Turn off commentary voice" : "Turn on commentary voice"}
           title="Iconic commentary voice"
