@@ -1,43 +1,122 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import type { Player } from "@/data/players";
 import { PLAYER_ORDER, PLAYERS } from "@/data/players";
 import SectionHeading from "./SectionHeading";
 import AnimatedCounter from "./AnimatedCounter";
-import { ArrowRightIcon, TrophyIcon } from "./icons";
+import { ArrowRightIcon, ChevronDownIcon, TrophyIcon } from "./icons";
 
-/** Trophies, impact, what-if — plus portals to the other two legends. */
+/**
+ * The Trophy Cabinet: every honour itemized by team with its winning years.
+ * Tap a shelf to expand it — the total always equals the visible list.
+ */
 export default function Legacy({ player }: { player: Player }) {
-  const { act, trophies, impact, whatIf } = player.legacy;
+  const { act, cabinet, footnote, impact, whatIf } = player.legacy;
+  const [open, setOpen] = useState<number | null>(0);
   const others = PLAYER_ORDER.filter((id) => id !== player.id);
+
+  const total = cabinet.reduce((a, g) => a + g.items.reduce((x, i) => x + i.years.length, 0), 0);
 
   return (
     <section className="border-t border-white/10 bg-black/40 py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-4 md:px-8">
         <SectionHeading eyebrow={act} title="Legacy" />
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {trophies.map((t, i) => (
-            <motion.div
-              key={t.name}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
-              className="flex items-center gap-4 rounded-2xl border border-white/12 bg-white/[0.04] p-5"
-            >
-              <span className="shrink-0" aria-hidden><TrophyIcon className="h-10 w-10 text-accent" /></span>
-              <span>
-                <span className="block font-display text-3xl text-accent">
-                  ×<AnimatedCounter value={t.count} />
-                </span>
-                <span className="block text-sm font-bold uppercase tracking-[0.2em] text-white/70">{t.name}</span>
-              </span>
-            </motion.div>
-          ))}
+        {/* total hero */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.94 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6 }}
+          className="mb-8 flex flex-col items-center gap-2 rounded-3xl border border-accent/30 bg-gradient-to-b from-accent/10 to-transparent p-8 text-center md:p-10"
+        >
+          <TrophyIcon className="h-12 w-12 text-accent" />
+          <p className="text-glow font-display text-6xl text-accent md:text-8xl">
+            <AnimatedCounter value={total} />
+          </p>
+          <p className="text-xs font-black uppercase tracking-[0.4em] text-white/70">team honours — every one listed below</p>
+          <p className="mt-1 text-[11px] uppercase tracking-[0.25em] text-white/45">tap a shelf to inspect each title + year</p>
+        </motion.div>
+
+        {/* cabinet shelves */}
+        <div className="grid gap-4 lg:grid-cols-2">
+          {cabinet.map((group, gi) => {
+            const subtotal = group.items.reduce((a, i) => a + i.years.length, 0);
+            const isOpen = open === gi;
+            return (
+              <motion.div
+                key={group.team}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.5, delay: (gi % 2) * 0.08 }}
+                className={`overflow-hidden rounded-2xl border bg-white/[0.04] backdrop-blur-md transition-colors ${
+                  isOpen ? "border-accent/60" : "border-white/12 hover:border-white/35"
+                }`}
+              >
+                <button
+                  onClick={() => setOpen(isOpen ? null : gi)}
+                  aria-expanded={isOpen}
+                  className="flex w-full items-center gap-4 p-5 text-left md:p-6"
+                >
+                  <span
+                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-black"
+                    style={{ background: "linear-gradient(135deg, var(--c-primary), var(--c-accent))" }}
+                  >
+                    <TrophyIcon className="h-6 w-6" />
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block truncate font-display text-xl md:text-2xl">{group.team}</span>
+                    <span className="block text-[11px] font-bold uppercase tracking-[0.25em] text-white/50">
+                      {group.items.length} competitions
+                    </span>
+                  </span>
+                  <span className="shrink-0 rounded-full bg-accent px-3.5 py-1.5 font-display text-lg text-black">
+                    ×{subtotal}
+                  </span>
+                  <ChevronDownIcon className={`h-5 w-5 shrink-0 text-white/60 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      <div className="space-y-3 border-t border-white/10 p-5 md:p-6">
+                        {group.items.map((item) => (
+                          <div key={item.name} className="rounded-xl bg-black/40 p-4">
+                            <div className="flex items-baseline justify-between gap-3">
+                              <p className="font-bold text-white/90">{item.name}</p>
+                              <p className="shrink-0 font-display text-lg text-accent">×{item.years.length}</p>
+                            </div>
+                            <div className="mt-2.5 flex flex-wrap gap-1.5">
+                              {item.years.map((y) => (
+                                <span
+                                  key={y}
+                                  className="rounded-full border border-white/15 bg-white/[0.06] px-2.5 py-1 text-[11px] font-bold tabular-nums text-white/80"
+                                >
+                                  {y}
+                                </span>
+                              ))}
+                            </div>
+                            {item.note && <p className="mt-2 text-xs italic text-white/45">{item.note}</p>}
+                          </div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
         </div>
+        <p className="mt-5 text-center text-xs leading-relaxed text-white/40">{footnote} Counts cross-checked with Wikipedia (Oct 2026).</p>
 
         <div className="mt-12 grid gap-6 md:grid-cols-2">
           <motion.div

@@ -39,6 +39,17 @@ export interface ClubStat {
   trophies: number;
 }
 
+export interface CabinetItem {
+  name: string;
+  years: string[];
+  note?: string;
+}
+
+export interface CabinetGroup {
+  team: string;
+  items: CabinetItem[];
+}
+
 export interface TimelineEvent {
   year: string;
   title: string;
@@ -91,7 +102,8 @@ export interface Player {
   voices: Quote[];
   legacy: {
     act: string;
-    trophies: { name: string; count: number }[];
+    cabinet: CabinetGroup[];
+    footnote: string;
     impact: string;
     whatIf: string;
   };
@@ -188,7 +200,7 @@ export const PLAYERS: Record<PlayerId, Player> = {
       "https://commons.wikimedia.org/wiki/Special:FilePath/Lionel_Messi_NE_Revolution_Inter_Miami_7.9.25-178.jpg?width=900",
     imageAlt: "Lionel Messi playing for Inter Miami (Wikimedia Commons, CC BY-SA)",
     bgImage: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?q=80&w=1920&auto=format&fit=crop",
-    totals: { apps: 1174, goals: 930, assists: 425, trophies: 46 },
+    totals: { apps: 1174, goals: 930, assists: 425, trophies: 47 },
     keyStats: [
       { label: "Career Goals", value: 930 },
       { label: "Ballon d'Or", value: 8 },
@@ -213,10 +225,10 @@ export const PLAYERS: Record<PlayerId, Player> = {
       intro:
         "Twenty-one seasons, four shirts, one constant: the ball glued to his left foot. Every club became his stage — Barcelona his cathedral, Paris his interlude, Miami his sunset, Argentina his destiny.",
       clubs: [
-        { club: "FC Barcelona", years: "2004 – 2021", apps: 778, goals: 672, assists: 269, trophies: 35 },
+        { club: "FC Barcelona", years: "2004 – 2021", apps: 778, goals: 672, assists: 269, trophies: 34 },
         { club: "Paris Saint-Germain", years: "2021 – 2023", apps: 75, goals: 32, assists: 34, trophies: 3 },
-        { club: "Inter Miami", years: "2023 – now", apps: 117, goals: 102, assists: 56, trophies: 2 },
-        { club: "Argentina", years: "2005 – 2026", apps: 207, goals: 125, assists: 65, trophies: 6 },
+        { club: "Inter Miami", years: "2023 – now", apps: 117, goals: 102, assists: 56, trophies: 4 },
+        { club: "Argentina", years: "2005 – 2026", apps: 208, goals: 126, assists: 65, trophies: 6 },
       ],
       peaks: [
         { season: "2011/12 — 73G + 30A in 60 games", text: "The most devastating club season ever played. Fifty La Liga goals, fourteen in Europe, five against Leverkusen in one night." },
@@ -237,7 +249,8 @@ export const PLAYERS: Record<PlayerId, Player> = {
         { year: "2017", title: "The Remontada + Bernabéu", text: "Architects the 6–1 miracle vs PSG, then silences the Bernabéu with a 93rd-minute winner and that shirt held high." },
         { year: "2021", title: "Finally, Argentina", text: "Copa América at the Maracanã. The tears, the monkey off the back — a nation exhales." },
         { year: "2022", title: "The crown", text: "World Cup in Qatar. Two goals in the greatest final ever played (3–3 vs France). Complete." },
-        { year: "2023 →", title: "Miami Sunset", text: "Inter Miami: sold-out stadiums, Leagues Cup glory, and football's greatest teacher enjoying the game like a kid in Rosario again." },
+        { year: "2023 →", title: "Miami Sunset", text: "Inter Miami: sold-out stadiums, Leagues Cup 2023, Supporters' Shield 2024, MLS Cup 2025, Campeones Cup 2026 — the greatest teacher enjoying the game like a kid in Rosario again." },
+        { year: "2026", title: "The last dance", text: "One more World Cup final (runner-up 2026), Silver Ball and Silver Boot — then international retirement on 6 October 2026. 208 caps, 126 goals. Gracias, Leo." },
       ],
     },
     moments: {
@@ -255,8 +268,8 @@ export const PLAYERS: Record<PlayerId, Player> = {
       { label: "Goals in a calendar year", value: "91 (2012)" },
       { label: "Goals in a La Liga season", value: "50 (2011/12)" },
       { label: "Most goals for one club", value: "672 for Barcelona" },
-      { label: "Argentina caps / goals", value: "207 / 125" },
-      { label: "Major trophies", value: "46 — most in history" },
+      { label: "Argentina caps / goals", value: "208 / 126" },
+      { label: "Major trophies", value: "47 — most in history" },
     ],
     quotes: [
       { text: "You have to fight to reach your dream. You have to sacrifice and work hard for it.", author: "Lionel Messi" },
@@ -270,13 +283,45 @@ export const PLAYERS: Record<PlayerId, Player> = {
     ],
     legacy: {
       act: "V. Legacy",
-      trophies: [
-        { name: "World Cup", count: 1 },
-        { name: "Copa América", count: 2 },
-        { name: "Champions League", count: 4 },
-        { name: "La Liga", count: 10 },
-        { name: "Ballon d'Or", count: 8 },
-        { name: "European Golden Shoe", count: 6 },
+      footnote: "Senior tally 46 + U20 World Cup 2005 = 47 per Wikipedia (Oct 2026). Individual awards live in the records section, not here.",
+      cabinet: [
+        {
+          team: "FC Barcelona",
+          items: [
+            { name: "La Liga", years: ["2005", "2006", "2009", "2010", "2011", "2013", "2015", "2016", "2018", "2019"] },
+            { name: "Copa del Rey", years: ["2009", "2012", "2015", "2016", "2017", "2018", "2021"] },
+            { name: "Supercopa de España", years: ["2006", "2009", "2010", "2011", "2013", "2016", "2018"] },
+            { name: "Champions League", years: ["2006", "2009", "2011", "2015"], note: "2006: squad member — missed the knockout run injured" },
+            { name: "UEFA Super Cup", years: ["2009", "2011", "2015"] },
+            { name: "Club World Cup", years: ["2009", "2011", "2015"] },
+          ],
+        },
+        {
+          team: "Paris Saint-Germain",
+          items: [
+            { name: "Ligue 1", years: ["2022", "2023"] },
+            { name: "Trophée des Champions", years: ["2022"] },
+          ],
+        },
+        {
+          team: "Inter Miami",
+          items: [
+            { name: "Leagues Cup", years: ["2023"] },
+            { name: "Supporters' Shield", years: ["2024"] },
+            { name: "MLS Cup", years: ["2025"] },
+            { name: "Campeones Cup", years: ["2026"] },
+          ],
+        },
+        {
+          team: "Argentina",
+          items: [
+            { name: "FIFA World Cup", years: ["2022"] },
+            { name: "Copa América", years: ["2021", "2024"] },
+            { name: "Finalissima", years: ["2022"] },
+            { name: "Olympic Gold", years: ["2008"], note: "U23 tournament" },
+            { name: "U20 World Cup", years: ["2005"], note: "Youth level" },
+          ],
+        },
       ],
       impact:
         "Messi ended the greatest debate in sport — not with words, but with Doha. He turned playmaking into an art form, made 91 goals in a year feel inevitable, and carried the humility of Rosario through every coronation. An entire generation of kids doesn't dribble past cones — they dribble past ghosts, pretending the ball is glued to their left foot.",
@@ -322,11 +367,11 @@ export const PLAYERS: Record<PlayerId, Player> = {
       clubs: [
         { club: "Sporting CP", years: "2002 – 2003", apps: 31, goals: 5, assists: 6, trophies: 1 },
         { club: "Manchester United", years: "2003 – 2009", apps: 292, goals: 118, assists: 69, trophies: 9 },
-        { club: "Real Madrid", years: "2009 – 2018", apps: 438, goals: 450, assists: 131, trophies: 16 },
+        { club: "Real Madrid", years: "2009 – 2018", apps: 438, goals: 450, assists: 131, trophies: 15 },
         { club: "Juventus", years: "2018 – 2021", apps: 134, goals: 101, assists: 22, trophies: 5 },
         { club: "Manchester United", years: "2021 – 2022", apps: 54, goals: 27, assists: 5, trophies: 0 },
-        { club: "Al Nassr", years: "2023 – now", apps: 155, goals: 132, assists: 23, trophies: 1 },
-        { club: "Portugal", years: "2003 – 2026", apps: 234, goals: 146, assists: 35, trophies: 2 },
+        { club: "Al Nassr", years: "2023 – now", apps: 155, goals: 132, assists: 23, trophies: 2 },
+        { club: "Portugal", years: "2003 – 2026", apps: 234, goals: 146, assists: 35, trophies: 3 },
       ],
       peaks: [
         { season: "2014/15 — 61 goals", text: "Peak athletic destruction: 48 league goals, a five-goal game vs Granada, and a Pichichi on pure violence." },
@@ -348,6 +393,7 @@ export const PLAYERS: Record<PlayerId, Player> = {
         { year: "2019", title: "The Atlético hat-trick", text: "12 March: single-handedly overturns a 2–0 deficit vs Atlético. 'This is Juventus' — no, this is Ronaldo." },
         { year: "2022", title: "The 6th World Cup", text: "First man ever to score at SIX World Cups. Longevity as a weapon." },
         { year: "2023 →", title: "Road to 1000", text: "Al Nassr's Riyadh nights: 132 goals and counting. 979 down, 21 to history. SIUUU." },
+        { year: "2026", title: "Saudi champion", text: "First Saudi Pro League title with Al Nassr — top scorer again at 41. The machine keeps its promises." },
       ],
     },
     moments: {
@@ -380,13 +426,56 @@ export const PLAYERS: Record<PlayerId, Player> = {
     ],
     legacy: {
       act: "V. Legacy",
-      trophies: [
-        { name: "European Championship", count: 1 },
-        { name: "Champions League", count: 5 },
-        { name: "League titles (ENG/ESP/ITA)", count: 7 },
-        { name: "Ballon d'Or", count: 5 },
-        { name: "European Golden Shoe", count: 4 },
-        { name: "Club World Cup", count: 4 },
+      footnote: "35 official team honours per Wikipedia (Oct 2026). The 2016 UEFA Super Cup is not credited — injured after the Euros. Individual awards live in records.",
+      cabinet: [
+        {
+          team: "Sporting CP",
+          items: [{ name: "Supertaça", years: ["2002"] }],
+        },
+        {
+          team: "Manchester United",
+          items: [
+            { name: "Premier League", years: ["2007", "2008", "2009"] },
+            { name: "FA Cup", years: ["2004"] },
+            { name: "League Cup", years: ["2006", "2009"] },
+            { name: "Community Shield", years: ["2007"] },
+            { name: "Champions League", years: ["2008"] },
+            { name: "Club World Cup", years: ["2008"] },
+          ],
+        },
+        {
+          team: "Real Madrid",
+          items: [
+            { name: "La Liga", years: ["2012", "2017"] },
+            { name: "Copa del Rey", years: ["2011", "2014"] },
+            { name: "Supercopa de España", years: ["2012", "2017"] },
+            { name: "Champions League", years: ["2014", "2016", "2017", "2018"] },
+            { name: "UEFA Super Cup", years: ["2014", "2017"] },
+            { name: "Club World Cup", years: ["2014", "2016", "2017"] },
+          ],
+        },
+        {
+          team: "Juventus",
+          items: [
+            { name: "Serie A", years: ["2019", "2020"] },
+            { name: "Coppa Italia", years: ["2021"] },
+            { name: "Supercoppa Italiana", years: ["2018", "2020"] },
+          ],
+        },
+        {
+          team: "Al Nassr",
+          items: [
+            { name: "Saudi Pro League", years: ["2026"] },
+            { name: "Arab Club Champions Cup", years: ["2023"], note: "Both goals in the final vs Al Hilal" },
+          ],
+        },
+        {
+          team: "Portugal",
+          items: [
+            { name: "European Championship", years: ["2016"] },
+            { name: "Nations League", years: ["2019", "2025"] },
+          ],
+        },
       ],
       impact:
         "Ronaldo industrialised greatness. He proved that willpower is a skill — that headers, free-kicks, both feet and big-game nerves can all be manufactured through obsession. A generation now trains like professionals at twelve because one boy from Madeira refused to accept a ceiling. 1000 goals isn't a fantasy; it's accounting.",
@@ -406,7 +495,7 @@ export const PLAYERS: Record<PlayerId, Player> = {
       "https://commons.wikimedia.org/wiki/Special:FilePath/Neymar_at_2026_FIFA_World_Cup_by_YantsImages.jpg?width=900",
     imageAlt: "Neymar at the 2026 FIFA World Cup (Wikimedia Commons, CC BY-SA)",
     bgImage: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?q=80&w=1920&auto=format&fit=crop",
-    totals: { apps: 773, goals: 459, assists: 283, trophies: 28 },
+    totals: { apps: 773, goals: 459, assists: 283, trophies: 31 },
     keyStats: [
       { label: "Career Goals", value: 459 },
       { label: "Brazil Goals", value: 80, suffix: " ✦" },
@@ -432,11 +521,11 @@ export const PLAYERS: Record<PlayerId, Player> = {
         "From the Vila to the world: the €222M man, one third of the greatest trio ever assembled, and Brazil's eternal No. 10 — a career of joy, pain and comebacks.",
       clubs: [
         { club: "Santos", years: "2009 – 2013", apps: 225, goals: 136, assists: 64, trophies: 6 },
-        { club: "FC Barcelona", years: "2013 – 2017", apps: 186, goals: 105, assists: 76, trophies: 9 },
+        { club: "FC Barcelona", years: "2013 – 2017", apps: 186, goals: 105, assists: 76, trophies: 8 },
         { club: "Paris Saint-Germain", years: "2017 – 2023", apps: 173, goals: 118, assists: 69, trophies: 13 },
         { club: "Al Hilal", years: "2023 – 2025", apps: 7, goals: 1, assists: 3, trophies: 1 },
         { club: "Santos (return)", years: "2025 – now", apps: 52, goals: 19, assists: 12, trophies: 0 },
-        { club: "Brazil", years: "2010 – 2026", apps: 130, goals: 80, assists: 59, trophies: 2 },
+        { club: "Brazil", years: "2010 – 2026", apps: 130, goals: 80, assists: 59, trophies: 3 },
       ],
       peaks: [
         { season: "2014/15 — Treble + MSN 122", text: "One third of the deadliest trio in history: 39 goals and the assist for the UCL final's clincher in Berlin." },
@@ -458,6 +547,7 @@ export const PLAYERS: Record<PlayerId, Player> = {
         { year: "2018–19", title: "The metatarsals", text: "Two cruel foot fractures, two birthdays in recovery. The body starts billing the brilliance." },
         { year: "2023", title: "ACL + the King passed", text: "Passes Pelé as Brazil's all-time scorer in September — then ruptures his ACL in October. 340 days in the dark." },
         { year: "2025 →", title: "The Comeback", text: "Home to Santos, to the Vila, to joy. 52 games of samba and counting — the prince dances again." },
+        { year: "2026", title: "O adeus", text: "A fourth World Cup with Brazil, then international retirement: 130 caps, 80 goals, forever the top scorer. The grin remains." },
       ],
     },
     moments: {
@@ -490,13 +580,48 @@ export const PLAYERS: Record<PlayerId, Player> = {
     ],
     legacy: {
       act: "V. Legacy",
-      trophies: [
-        { name: "Copa Libertadores", count: 1 },
-        { name: "Champions League", count: 1 },
-        { name: "Olympic Gold", count: 1 },
-        { name: "Confederations Cup", count: 1 },
-        { name: "League titles (ESP/FRA)", count: 7 },
-        { name: "Domestic cups", count: 12 },
+      footnote: "31 honours all-in: senior tally 29 + Olympic gold (U23) + U20 Sudamericano. Missed the 2015 UEFA Super Cup with mumps — not credited.",
+      cabinet: [
+        {
+          team: "Santos",
+          items: [
+            { name: "Copa Libertadores", years: ["2011"] },
+            { name: "Copa do Brasil", years: ["2010"] },
+            { name: "Recopa Sudamericana", years: ["2012"] },
+            { name: "Campeonato Paulista", years: ["2010", "2011", "2012"] },
+          ],
+        },
+        {
+          team: "FC Barcelona",
+          items: [
+            { name: "La Liga", years: ["2015", "2016"] },
+            { name: "Copa del Rey", years: ["2015", "2016", "2017"] },
+            { name: "Supercopa de España", years: ["2013"] },
+            { name: "Champions League", years: ["2015"] },
+            { name: "Club World Cup", years: ["2015"] },
+          ],
+        },
+        {
+          team: "Paris Saint-Germain",
+          items: [
+            { name: "Ligue 1", years: ["2018", "2019", "2020", "2022", "2023"] },
+            { name: "Coupe de France", years: ["2018", "2020", "2021"] },
+            { name: "Coupe de la Ligue", years: ["2018", "2020"] },
+            { name: "Trophée des Champions", years: ["2018", "2020", "2022"] },
+          ],
+        },
+        {
+          team: "Al Hilal",
+          items: [{ name: "Saudi Pro League", years: ["2024"], note: "3 league apps — squad credit" }],
+        },
+        {
+          team: "Brazil",
+          items: [
+            { name: "Confederations Cup", years: ["2013"] },
+            { name: "Olympic Gold", years: ["2016"], note: "U23 — winning penalty in the Maracanã final" },
+            { name: "U20 Sudamericano", years: ["2011"], note: "Youth level" },
+          ],
+        },
       ],
       impact:
         "Neymar kept the street alive in the age of systems. While football turned to pressing patterns and data, he insisted on the elastico, the rainbow, the grin — proof that joy is a tactic. Brazil's all-time top scorer, the most expensive player ever, and the reason a million kids try the flick before the pass.",
@@ -525,7 +650,7 @@ export const COMPARISON: CompareRow[] = [
   { label: "Appearances", messi: 1174, ronaldo: 1338, neymar: 773 },
   { label: "Ballon d'Or", messi: 8, ronaldo: 5, neymar: 0 },
   { label: "International goals", messi: 125, ronaldo: 146, neymar: 80 },
-  { label: "Major trophies", messi: 46, ronaldo: 35, neymar: 28 },
+  { label: "Major trophies", messi: 47, ronaldo: 35, neymar: 31 },
 ];
 
 /* --------------------------------- VOTES -------------------------------- */
