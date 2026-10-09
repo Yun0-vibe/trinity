@@ -26,6 +26,7 @@ export interface ThemeConfig {
   particles: ParticleKind;
   preloaderNumber: number;
   marquee: string[];
+  music: { title: string; url: string };
   confettiColors: string[];
 }
 
@@ -126,6 +127,10 @@ export const THEMES: Record<ThemeId, ThemeConfig> = {
     particles: "stardust",
     preloaderNumber: 3,
     marquee: ["THE TRINITY", "CHOOSE YOUR LEGEND", "MESSI · RONALDO · NEYMAR", "THE HOLY TRINITY OF FOOTBALL"],
+    music: {
+      title: "Trinity Theme · Lo-fi Bed",
+      url: "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Meditation%20Impromptu%2003.mp3",
+    },
     confettiColors: ["#75AADB", "#DA291C", "#FFDF00", "#FFD700", "#ffffff"],
   },
   messi: {
@@ -143,6 +148,10 @@ export const THEMES: Record<ThemeId, ThemeConfig> = {
     particles: "dust",
     preloaderNumber: 10,
     marquee: ["LA PULGA", "THE FLEA", "GENIUS DOESN'T SHOUT", "ROSARIO · BARCELONA · MIAMI", "91 GOALS · ONE YEAR"],
+    music: {
+      title: "La Pulga Theme · Lo-fi Bed",
+      url: "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Deliberate%20Thought.mp3",
+    },
     confettiColors: ["#75AADB", "#FFD700", "#ffffff", "#bfe0ff"],
   },
   ronaldo: {
@@ -160,6 +169,10 @@ export const THEMES: Record<ThemeId, ThemeConfig> = {
     particles: "embers",
     preloaderNumber: 7,
     marquee: ["SIUUU", "CR7", "HARD WORK BEATS TALENT", "THE ROAD TO 1000", "MADEIRA · MADRID · RIYADH"],
+    music: {
+      title: "SIUUU Theme · Lo-fi Bed",
+      url: "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Meditation%20Impromptu%2001.mp3",
+    },
     confettiColors: ["#DA291C", "#FFDE00", "#c8ccd4", "#ffffff"],
   },
   neymar: {
@@ -177,6 +190,10 @@ export const THEMES: Record<ThemeId, ThemeConfig> = {
     particles: "confetti",
     preloaderNumber: 10,
     marquee: ["JOGA BONITO", "THE SAMBA PRINCE", "MENINOS DA VILA", "PLAY TO MAKE PEOPLE HAPPY", "SANTOS · MSN · PARIS"],
+    music: {
+      title: "Samba Prince Theme · Lo-fi Bed",
+      url: "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Thinking%20Music.mp3",
+    },
     confettiColors: ["#FFDF00", "#009C3B", "#00D1A1", "#ff6fa5", "#ffffff"],
   },
 };

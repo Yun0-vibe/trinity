@@ -36,6 +36,8 @@ export default function Preloader({ player, onComplete }: Props) {
   const play = () => {
     if (exiting) return;
     setExiting(true);
+    // User gesture — the ambient audio may start audibly from here.
+    window.dispatchEvent(new CustomEvent("trinity:music-start"));
     setTimeout(onComplete, 650);
   };
 

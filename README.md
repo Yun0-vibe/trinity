@@ -39,8 +39,10 @@ All content + per-theme config lives in `data/players.ts`.
 
 ## Sound
 
-No background music — removed by design. The stadium roars live inside the
-Craziest Moments videos on each player page.
+Headless themed ambience — a calm lo-fi bed per legend, no player UI.
+It starts muted on load and fades in gently on first interaction.
+Drop your own MP3s in `public/audio/` and point `music.url` at them
+in `data/players.ts` to swap tracks.
 
 ## Credits
 
